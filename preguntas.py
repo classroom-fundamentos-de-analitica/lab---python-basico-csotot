@@ -14,6 +14,17 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 def pregunta_01():
+    with open ("data.csv","r") as file:
+        data=file.read()
+    data=data[:-1]
+    data=data.split("\n")
+    data=[data[i].split("\t") for i in range (len(data))]
+
+    sum=0
+    for i in data:
+        sum+=int(i[1])
+    return sum
+
     """
     Retorne la suma de la segunda columna.
 
@@ -22,7 +33,7 @@ def pregunta_01():
 
     """
     return
-
+print(pregunta_01())
 
 def pregunta_02():
     """
