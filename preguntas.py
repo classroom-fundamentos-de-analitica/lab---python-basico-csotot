@@ -36,6 +36,26 @@ def pregunta_01():
 print(pregunta_01())
 
 def pregunta_02():
+    with open ("data.csv","r") as file:
+        data=file.read()
+    data=data[:-1]
+    data=data.split("\n")
+    data=[data[i].split("\t") for i in range (len(data))]
+
+    a={}
+    b=[]
+
+    for i in data:
+        if i [0] in a:
+            a[i[0]]+=1
+        else:
+            a[i[0]]=1
+    for i in a: 
+        b.append(tuple([i,a[i]]))
+    b=sorted(b)
+    return b
+
+
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
     de tuplas (letra, cantidad), ordendas alfabéticamente.
@@ -51,7 +71,7 @@ def pregunta_02():
 
     """
     return
-
+print(pregunta_02())
 
 def pregunta_03():
     """
