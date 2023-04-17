@@ -107,9 +107,28 @@ def pregunta_03():
 
     """
     return
-print (pregunta_03())
+#print (pregunta_03())
 
 def pregunta_04():
+    with open ("data.csv","r") as file:
+        data = file.read()
+    data = data.split("\n")         
+    data = [data[i].split("\t") for i in range(len(data))]
+
+    a = {}
+    b = []
+    
+    for line in data:
+        month = line[2].split("-")[1]
+        if month in a:
+            a[month] += 1
+        else:
+            a[month] = 1
+    for month in a:
+        b.append(tuple([month, a[month]]))
+    b = sorted(b)
+    return b
+
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
@@ -132,7 +151,7 @@ def pregunta_04():
 
     """
     return
-
+print(pregunta_04())
 
 def pregunta_05():
     """
