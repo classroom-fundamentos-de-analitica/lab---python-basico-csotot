@@ -14,15 +14,13 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 def pregunta_01():
-    with open ("data.csv","r") as file:
-        data=file.read()
-    data=data[:-1]
-    data=data.split("\n")
-    data=[data[i].split("\t") for i in range (len(data))]
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
 
-    sum=0
+    sum = 0
     for i in data:
-        sum+=int(i[1])
+        sum += int(i[1])
     return sum
 
     """
@@ -33,28 +31,26 @@ def pregunta_01():
 
     """
     return
-#print(pregunta_01())
+print(pregunta_01())
+
 
 def pregunta_02():
-    with open ("data.csv","r") as file:
-        data=file.read()
-    data=data[:-1]
-    data=data.split("\n")
-    data=[data[i].split("\t") for i in range (len(data))]
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
 
-    a={}
-    b=[]
+    dic = {}
+    tupleList = []
 
     for i in data:
-        if i [0] in a:
-            a[i[0]]+=1
+        if i[0] in dic:
+            dic[i[0]] += 1
         else:
-            a[i[0]]=1
-    for i in a: 
-        b.append(tuple([i,a[i]]))
-    b=sorted(b)
-    return b
-
+            dic[i[0]] = 1
+    for i in dic:
+        tupleList.append(tuple([i, dic[i]]))
+    tupleList = sorted(tupleList)
+    return tupleList
 
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
@@ -71,26 +67,26 @@ def pregunta_02():
 
     """
     return
-#print(pregunta_02())
+print(pregunta_02())
+
 
 def pregunta_03():
-    with open ("data.csv","r") as file:
-        data = file.read()
-    data = data.split("\n")         
-    data = [data[i].split("\t") for i in range(len(data))]
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
 
-    a = {}
-    b = []
+    dic = {}
+    tupleList = []
 
     for line in data:
-        if line[0] in a:
-            a[line[0]] += int(line[1])
+        if line[0] in dic:
+            dic[line[0]] += int(line[1])
         else:
-            a[line[0]] = int(line[1])
-    for char in a:
-        b.append(tuple([char, a[char]]))
-    b = sorted(b)
-    return b
+            dic[line[0]] = int(line[1])
+    for char in dic:
+        tupleList.append(tuple([char, dic[char]]))
+    tupleList = sorted(tupleList)
+    return tupleList
 
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
@@ -107,27 +103,27 @@ def pregunta_03():
 
     """
     return
-#print (pregunta_03())
+print (pregunta_03())
+
 
 def pregunta_04():
-    with open ("data.csv","r") as file:
-        data = file.read()
-    data = data.split("\n")         
-    data = [data[i].split("\t") for i in range(len(data))]
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
 
-    a = {}
-    b = []
-    
+    dic = {}
+    tupleList = []
+
     for line in data:
         month = line[2].split("-")[1]
-        if month in a:
-            a[month] += 1
+        if month in dic:
+            dic[month] += 1
         else:
-            a[month] = 1
-    for month in a:
-        b.append(tuple([month, a[month]]))
-    b = sorted(b)
-    return b
+            dic[month] = 1
+    for month in dic:
+        tupleList.append(tuple([month, dic[month]]))
+    tupleList = sorted(tupleList)
+    return tupleList
 
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
@@ -153,7 +149,26 @@ def pregunta_04():
     return
 print(pregunta_04())
 
+
 def pregunta_05():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic = {}
+    tupleList = []
+
+    for line in data:
+        if line[0] in dic:
+            dic[line[0]][0] = max(dic[line[0]][0], int(line[1]))
+            dic[line[0]][1] = min(dic[line[0]][1], int(line[1]))
+        else:
+            dic[line[0]] = [int(line[1]), int(line[1])]
+    for char in dic:
+        tupleList.append(tuple([char, dic[char][0], dic[char][1]]))
+    tupleList = sorted(tupleList)
+    return tupleList
+
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
@@ -169,9 +184,34 @@ def pregunta_05():
 
     """
     return
+print(pregunta_05())
 
 
 def pregunta_06():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic, tupleList = {}, []
+
+    for i in range(len(data)):
+        dictColum = data[i][4]
+        dictList = dictColum.split(",")
+        keyValueList = [element.split(":") for element in dictList]
+        dictionary = {element[0]: element[1] for element in keyValueList}
+
+        for j in dictionary:
+            if j in dic:
+                dic[j][0] = max(int(dic[j][0]), int(dictionary[j]))
+                dic[j][1] = min(int(dic[j][1]), int(dictionary[j]))
+            else:
+                dic[j] = [int(dictionary[j]), int(dictionary[j])]
+
+    for i in dic:
+        tupleList.append(tuple([i, dic[i][1], dic[i][0]]))
+    tupleList = sorted(tupleList)
+    return tupleList
+
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
@@ -194,9 +234,28 @@ def pregunta_06():
 
     """
     return
-
+print(pregunta_06())
 
 def pregunta_07():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic, tupleList = {}, []
+    
+    for line in data:
+        num = line[1]
+        char = line[0]
+        if num in dic:
+            dic[num] += [char]
+        else:
+            dic[num] = [char]
+    for i in dic:
+        tupleList.append(tuple([i, dic[i]]))
+    tupleList = sorted(tupleList)
+    return tupleList
+
+
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
@@ -218,9 +277,27 @@ def pregunta_07():
 
     """
     return
-
+print(pregunta_07())
 
 def pregunta_08():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic, tupleList = {}, []
+    
+    for line in data:
+        num = line[1]
+        char = line[0]
+        if num in dic:
+            dic[num] += char
+        else:
+            dic[num] = [char]
+    for i in dic:
+        tupleList.append(tuple([i, sorted(list(set(dic[i])))]))
+    tupleList = sorted(tupleList)
+    return tupleList
+
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
     de la segunda columna; la segunda parte de la tupla es una lista con las letras
@@ -243,9 +320,31 @@ def pregunta_08():
 
     """
     return
-
+print(pregunta_08())
 
 def pregunta_09():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic, tupleList = {}, []
+
+    for key in range(len(data)):
+        dictColum = data[key][4]
+        dictionaries = dictColum.split(",")
+        keyValueList = [element.split(":") for element in dictionaries]
+        dictionary = {element[0]: element[1] for element in keyValueList}
+        for key in dictionary:
+            if key in dic:
+                dic[key] += 1
+            else:
+                dic[key] = 1
+    for key in dic:
+        tupleList.append(tuple([key, dic[key]]))
+    tupleList = sorted(tupleList)
+    dic
+    return tupleList
+
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
@@ -266,9 +365,25 @@ def pregunta_09():
 
     """
     return
-
+print(pregunta_09())
 
 def pregunta_10():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    tupleList = []
+
+    for line in data:
+        char = line[0]
+        elements = line[3]
+        dicts = line[4]
+
+        elementCount = len(elements.split(","))
+        dictCount = len(dicts.split(","))
+        tupleList.append(tuple([char, elementCount, dictCount]))
+    return tupleList
+
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
     cantidad de elementos de las columnas 4 y 5.
@@ -287,9 +402,27 @@ def pregunta_10():
 
     """
     return
-
+print(pregunta_10())
 
 def pregunta_11():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic, dic2 = {}, {}
+
+    for line in data:
+        chars = line[3].split(",")
+        value = line[1]
+        for char in chars:
+            if char in dic:
+                dic[char] += int(value)
+            else:
+                dic[char] = int(value)
+    for char in sorted(dic):
+        dic2[char] = dic[char]
+    return dic2
+
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
@@ -308,9 +441,29 @@ def pregunta_11():
 
     """
     return
-
+print(pregunta_11())
 
 def pregunta_12():
+    with open("data.csv", "r") as file:
+        data = file.readlines()
+    data = [i.split("\t") for i in data]
+
+    dic, dic2 = {}, {}
+
+    for line in data:
+        char = line[0]
+        dictColum = line[4]
+        dictList = dictColum.split(",")
+        keyValueList = [element.split(":") for element in dictList]
+        total = sum([int(element[1]) for element in keyValueList])
+        if char in dic:
+            dic[char] += total
+        else:
+            dic[char] = total
+    for char in sorted(dic):
+        dic2[char] = dic[char]
+    return dic2
+
     """
     Genere un diccionario que contengan como clave la columna 1 y como valor la suma de
     los valores de la columna 5 sobre todo el archivo.
@@ -326,3 +479,4 @@ def pregunta_12():
 
     """
     return
+print(pregunta_12())
