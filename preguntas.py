@@ -33,7 +33,7 @@ def pregunta_01():
 
     """
     return
-print(pregunta_01())
+#print(pregunta_01())
 
 def pregunta_02():
     with open ("data.csv","r") as file:
@@ -71,9 +71,27 @@ def pregunta_02():
 
     """
     return
-print(pregunta_02())
+#print(pregunta_02())
 
 def pregunta_03():
+    with open ("data.csv","r") as file:
+        data = file.read()
+    data = data.split("\n")         
+    data = [data[i].split("\t") for i in range(len(data))]
+
+    a = {}
+    b = []
+
+    for line in data:
+        if line[0] in a:
+            a[line[0]] += int(line[1])
+        else:
+            a[line[0]] = int(line[1])
+    for char in a:
+        b.append(tuple([char, a[char]]))
+    b = sorted(b)
+    return b
+
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
     de tuplas (letra, suma) ordendas alfabeticamente.
@@ -89,7 +107,7 @@ def pregunta_03():
 
     """
     return
-
+print (pregunta_03())
 
 def pregunta_04():
     """
