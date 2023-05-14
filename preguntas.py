@@ -314,7 +314,7 @@ def pregunta_09():
         data = file.readlines()
     data = [i.split("\t") for i in data]
 
-    dic, tupleList = {}, []
+    dic, dic2  = {}, {}
 
     for key in range(len(data)):
         dictColum = data[key][4]
@@ -326,7 +326,9 @@ def pregunta_09():
                 dic[key] += 1
             else:
                 dic[key] = 1
-    return sorted(dic)
+    for key in sorted(dic):
+        dic2[key] = dic[key]
+    return dic2
 
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
