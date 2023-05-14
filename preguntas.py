@@ -86,7 +86,7 @@ def pregunta_03():
     for char in dic:
         tupleList.append(tuple([char, dic[char]]))
     tupleList = sorted(tupleList)
-    return tupleList
+    return tupleList 
 
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
@@ -233,7 +233,6 @@ def pregunta_06():
     ]
 
     """
-    return
 print(pregunta_06())
 
 def pregunta_07():
@@ -254,6 +253,7 @@ def pregunta_07():
         tupleList.append(tuple([i, dic[i]]))
     tupleList = sorted(tupleList)
     return tupleList
+#esta pregunta nos esta dando un error y no sabemos identificarlo puesto que nos da la salida correcta pero puede que este fallando en algun parametro 
 
 
     """
@@ -297,7 +297,8 @@ def pregunta_08():
         tupleList.append(tuple([i, sorted(list(set(dic[i])))]))
     tupleList = sorted(tupleList)
     return tupleList
-
+#esta pregunta nos esta dando un fallo y no sabemos explicar el porque? 
+#pedir asesoria al profesor o buscar a sebastian para posibles fallos en el codigo 
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
     de la segunda columna; la segunda parte de la tupla es una lista con las letras
