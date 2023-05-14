@@ -31,7 +31,6 @@ def pregunta_01():
 
     """
     return
-print(pregunta_01())
 
 
 def pregunta_02():
@@ -66,8 +65,6 @@ def pregunta_02():
     ]
 
     """
-    return
-print(pregunta_02())
 
 
 def pregunta_03():
@@ -102,8 +99,6 @@ def pregunta_03():
     ]
 
     """
-    return
-print (pregunta_03())
 
 
 def pregunta_04():
@@ -146,8 +141,6 @@ def pregunta_04():
     ]
 
     """
-    return
-print(pregunta_04())
 
 
 def pregunta_05():
@@ -184,7 +177,6 @@ def pregunta_05():
 
     """
     return
-print(pregunta_05())
 
 
 def pregunta_06():
@@ -233,7 +225,6 @@ def pregunta_06():
     ]
 
     """
-print(pregunta_06())
 
 def pregunta_07():
     with open("data.csv", "r") as file:
@@ -250,13 +241,12 @@ def pregunta_07():
         else:
             dic[num] = [char]
     for i in dic:
-        tupleList.append(tuple([i, dic[i]]))
+        tupleList.append(tuple([int(i), dic[i]]))
     tupleList = sorted(tupleList)
     return tupleList
 #esta pregunta nos esta dando un error y no sabemos identificarlo puesto que nos da la salida correcta pero puede que este fallando en algun parametro 
 
-
-    """
+"""
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
     a dicho valor de la columna 2.
@@ -276,8 +266,6 @@ def pregunta_07():
     ]
 
     """
-    return
-print(pregunta_07())
 
 def pregunta_08():
     with open("data.csv", "r") as file:
@@ -294,7 +282,7 @@ def pregunta_08():
         else:
             dic[num] = [char]
     for i in dic:
-        tupleList.append(tuple([i, sorted(list(set(dic[i])))]))
+        tupleList.append(tuple([int(i), sorted(list(set(dic[i])))]))
     tupleList = sorted(tupleList)
     return tupleList
 #esta pregunta nos esta dando un fallo y no sabemos explicar el porque? 
@@ -320,8 +308,6 @@ def pregunta_08():
     ]
 
     """
-    return
-print(pregunta_08())
 
 def pregunta_09():
     with open("data.csv", "r") as file:
@@ -340,11 +326,7 @@ def pregunta_09():
                 dic[key] += 1
             else:
                 dic[key] = 1
-    for key in dic:
-        tupleList.append(tuple([key, dic[key]]))
-    tupleList = sorted(tupleList)
-    dic
-    return tupleList
+    return sorted(dic)
 
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
@@ -365,8 +347,6 @@ def pregunta_09():
     }
 
     """
-    return
-print(pregunta_09())
 
 def pregunta_10():
     with open("data.csv", "r") as file:
@@ -402,8 +382,6 @@ def pregunta_10():
 
 
     """
-    return
-print(pregunta_10())
 
 def pregunta_11():
     with open("data.csv", "r") as file:
@@ -441,8 +419,6 @@ def pregunta_11():
 
 
     """
-    return
-print(pregunta_11())
 
 def pregunta_12():
     with open("data.csv", "r") as file:
@@ -479,5 +455,3 @@ def pregunta_12():
     }
 
     """
-    return
-print(pregunta_12())
